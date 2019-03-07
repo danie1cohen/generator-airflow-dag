@@ -6,7 +6,7 @@
 from datetime import datetime, timedelta
 
 from airflow import DAG
-from airflow.macros import slack_status, slack_error
+from airflow.macros import send_exception_to_sentry
 
 
 dag_id = '<%= dagId %>'
@@ -16,12 +16,7 @@ default_args = {
     'retries': 5,
     'retry_delay': timedelta(minutes=15),
     'depends_on_past': False,
-    'email': ['<%= dagEmail %>'],
-    'email_on_failure': True,
-    'email_on_retry': False,
-    'on_success_callback': slack_status,
-    #'on_retry_callback': slack_status,
-    'on_failure_callback': slack_error,
+    'on_failure_callback': send_exception_to_sentry,
 }
 
 
