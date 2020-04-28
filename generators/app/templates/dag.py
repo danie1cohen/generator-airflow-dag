@@ -17,6 +17,9 @@ default_args = {
     'retry_delay': timedelta(minutes=15),
     'depends_on_past': False,
     'on_failure_callback': send_exception_to_sentry,
+    'email': ['<%= dagEmail %>'],
+    'email_on_failure': True,
+    'email_on_retry': False,
 }
 
 
