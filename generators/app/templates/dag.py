@@ -10,7 +10,7 @@ from airflow.macros import send_exception_to_sentry
 
 
 dag_id = '<%= dagId %>'
-schedule_interval = '0 10 * * *'
+schedule_interval = '0 0 * * *'
 default_args = {
     'owner': '<%= dagOwner %>',
     'retries': 5,
